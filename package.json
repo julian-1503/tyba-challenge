@@ -1,0 +1,30 @@
+{
+  "name": "tyba-challenge",
+  "version": "1.0.0",
+  "description": "Tyba backend challenge for a RESTful api ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "REST",
+    "api",
+    "tyba",
+    "challenge",
+    "backend"
+  ],
+  "author": "Julian Castano <julian@castano.app>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-config-standard": "14.1.1",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "3.1.3",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1",
+    "prettier": "2.0.5",
+    "jest": "26.0.1"
+  }
+}
