@@ -10,10 +10,7 @@ module.exports = {
     if (environment.database.dialect === constants.SUPPORTED_DATABASE.MONGO) {
       require("../orm/mongoose/mongoose");
     }
-    if (
-      environment.database.dialect === constants.SUPPORTED_DATABASE.POSTGRES ||
-      environment.database.dialect === constants.SUPPORTED_DATABASE.SQLITE
-    ) {
+    if (environment.database.dialect === constants.SUPPORTED_DATABASE.SQLITE) {
       const sequelize = require("../orm/sequelize/sequelize");
       try {
         await sequelize.sync();

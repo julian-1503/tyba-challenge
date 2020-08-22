@@ -1,7 +1,7 @@
 "use strict";
 
 const mongoose = require("mongoose");
-const environment = require("../../con fig/environment");
+const environment = require("../../config/environment");
 
 mongoose.connect(environment.database.url, { useNewUrlParser: true });
 
