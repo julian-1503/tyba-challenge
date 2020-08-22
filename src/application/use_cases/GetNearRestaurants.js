@@ -1,15 +1,6 @@
 "use strict";
 
-module.exports = async (
-  { lat, lang, cityId, pageNumber, pageSize },
-  CitiesRepository
-) => {
-  const result = CitiesRepository.getNear({
-    lat,
-    lang,
-    cityId,
-    pageNumber,
-    pageSize
-  });
+module.exports = async (city, page, pageSize, { RestaurantsRepository }) => {
+  const result = await RestaurantsRepository.findNear(city, page, pageSize);
   return result;
 };

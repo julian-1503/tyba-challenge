@@ -9,7 +9,10 @@ const authorization = require("../middlewares/authorization");
 module.exports = () => {
   const Router = express.Router();
 
-  Router.route("/restaurants").get(authorization, RestaurantsController.find);
+  Router.route("/restaurants").get(
+    authorization,
+    RestaurantsController.findNear
+  );
 
   return Router;
 };

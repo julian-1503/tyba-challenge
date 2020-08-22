@@ -1,22 +1,28 @@
 const GetNearRestaurants = require("../../application/use_cases/GetNearRestaurants");
 
 module.exports = {
-  async getAccessToken(req, res) {
-    const { lat, lang, cityId, pageSize, pageNumber } = req.body;
+  async findNear(req, res) {
+    const { city, pageSize, page } = req.query;
+    const serviceLocator = req.serviceLocator;
 
     try {
-      const accessToken = await GetNearRestaurants({
-        lat,
-        lang,
-        cityId,
+      const nearRestaurants = await GetNearRestaurants(
+        city,
         pageSize,
-        pageNumber
-      });
+        page,
+        serviceLocator
+      );
 
-      res.status(200).json({ token: accessToken });
+      if (nearRestaurants.error) {
+        return res
+          .status(nearRestaurants.status)
+          .json({ error: nearRestaurants.error });
+      }
+
+      res.status(200).json(nearRestaurants);
     } catch (err) {
       console.error(err);
-      res.sendStatus(401);
+      res.sendStatus(500);
     }
   }
 };

@@ -5,12 +5,14 @@ const environment = require("./environment");
 const JwtAccessTokenManager = require("../security/JwtAccessTokenManager");
 const UserSerializer = require("../../interfaces/serializers/UserSerializer");
 const PasswordEncryptor = require("../security/PasswordEncryptor");
+const RestaurantsRepository = require("../../infrastructure/repositories/RestaurantsRepositoryOpenTable");
 
 function buildBeans(req, _, next) {
   let beans = {
     accessTokenManager: new JwtAccessTokenManager(),
     userSerializer: new UserSerializer(),
-    passwordEncryptor: new PasswordEncryptor()
+    passwordEncryptor: new PasswordEncryptor(),
+    RestaurantsRepository: new RestaurantsRepository()
   };
 
   if (environment.database.dialect === constants.SUPPORTED_DATABASE.IN_MEMORY) {
