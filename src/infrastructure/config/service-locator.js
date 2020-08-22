@@ -5,7 +5,7 @@ const environment = require("./environment");
 const JwtAccessTokenManager = require("../security/JwtAccessTokenManager");
 const UserSerializer = require("../../interfaces/serializers/UserSerializer");
 
-function buildBeans() {
+function buildBeans(req, _, next) {
   const beans = {
     accessTokenManager: new JwtAccessTokenManager(),
     userSerializer: new UserSerializer()
@@ -24,7 +24,9 @@ function buildBeans() {
     beans.userRepository = new UserRepositorySQLite();
   }
 
-  return beans;
+  req.serviceLocator = beans;
+
+  next();
 }
 
-module.exports = buildBeans();
+module.exports = buildBeans;
