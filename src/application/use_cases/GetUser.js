@@ -1,5 +1,6 @@
 "use strict";
 
-module.exports = (userId, { userRepository }) => {
-  return userRepository.get(userId);
+module.exports = async (userId, { userRepository }) => {
+  const result = await userRepository.get(userId);
+  return result;
 };

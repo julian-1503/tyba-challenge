@@ -25,12 +25,13 @@ module.exports = class extends UserRepository {
 
   async merge(userEntity) {
     const { id, firstName, lastName, email, password } = userEntity;
-    const mongooseUser = MongooseUser.findByIdAndUpdate(id, {
+    const mongooseUser = await MongooseUser.findByIdAndUpdate(id, {
       firstName,
       lastName,
       email,
       password
     });
+
     return new User(
       mongooseUser.id,
       mongooseUser.firstName,
@@ -56,7 +57,8 @@ module.exports = class extends UserRepository {
   }
 
   async getByEmail(userEmail) {
-    const mongooseUser = await MongooseUser.find({ email: userEmail });
+    const mongooseUser = await MongooseUser.findOne({ email: userEmail });
+
     return new User(
       mongooseUser.id,
       mongooseUser.firstName,

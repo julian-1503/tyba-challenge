@@ -5,7 +5,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const serviceLocator = require("../../infrastructure/config/service-locator");
 
+const oauthRouter = require("../../interfaces/routes/oauth");
 const userRouter = require("../../interfaces/routes/users");
+const restaurantRouter = require("../../interfaces/routes/restaurants");
 
 const createServer = async () => {
   const port = process.env.PORT || 3000;
@@ -18,7 +20,9 @@ const createServer = async () => {
 
   app.use(serviceLocator);
 
+  app.use("/api", oauthRouter());
   app.use("/api", userRouter());
+  app.use("/api", restaurantRouter());
 
   await app.listen(port);
 };

@@ -3,11 +3,16 @@
 module.exports = async (
   email,
   password,
-  { userRepository, accessTokenManager }
+  { userRepository, accessTokenManager, passwordEncryptor }
 ) => {
-  const user = userRepository.getByEmail(email);
+  const user = await userRepository.getByEmail(email);
 
-  if (!user || user.password !== password) {
+  const isValidPassword = await passwordEncryptor.compare(
+    password,
+    user.password
+  );
+
+  if (!user || !isValidPassword) {
     throw new Error("Bad credentials");
   }
 

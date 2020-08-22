@@ -1,5 +1,6 @@
 "use strict";
 
-module.exports = (userId, { userRepository }) => {
-  return userRepository.remove(userId);
+module.exports = async (userId, { userRepository }) => {
+  const result = await userRepository.remove(userId);
+  return result;
 };

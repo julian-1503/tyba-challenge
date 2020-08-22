@@ -1,5 +1,6 @@
 "use strict";
 
-module.exports = ({ userRepository }) => {
-  return userRepository.find();
+module.exports = async ({ userRepository }) => {
+  const result = await userRepository.find();
+  return result;
 };

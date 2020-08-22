@@ -12,11 +12,15 @@ module.exports = {
     const { firstName, lastName, email, password } = req.body;
 
     try {
+      const passwordHash = await serviceLocator.passwordEncryptor.encrypt(
+        password
+      );
+
       const user = await CreateUser(
         firstName,
         lastName,
         email,
-        password,
+        passwordHash,
         serviceLocator
       );
 
