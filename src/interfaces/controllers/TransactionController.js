@@ -6,8 +6,6 @@ module.exports = {
   async findByUserId(req, res) {
     const serviceLocator = req.serviceLocator;
 
-    console.log(">>>>>. req", req.url);
-
     const { id } = req.params;
 
     try {
