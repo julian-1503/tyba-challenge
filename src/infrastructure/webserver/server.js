@@ -8,6 +8,7 @@ const serviceLocator = require("../../infrastructure/config/service-locator");
 const oauthRouter = require("../../interfaces/routes/oauth");
 const userRouter = require("../../interfaces/routes/users");
 const restaurantRouter = require("../../interfaces/routes/restaurants");
+const transactionRouter = require("../../interfaces/routes/transactions");
 
 const createServer = async () => {
   const port = process.env.PORT || 3000;
@@ -23,6 +24,7 @@ const createServer = async () => {
   app.use("/api", oauthRouter());
   app.use("/api", userRouter());
   app.use("/api", restaurantRouter());
+  app.use("/api", transactionRouter());
 
   await app.listen(port);
 };

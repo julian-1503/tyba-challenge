@@ -1,4 +1,5 @@
 const GetAccessToken = require("../../application/use_cases/GetAccessToken");
+const CreateTransaction = require("../../application/use_cases/CreateTransaction");
 
 module.exports = {
   async getAccessToken(req, res) {
@@ -7,9 +8,15 @@ module.exports = {
     const { email, password } = req.body;
 
     try {
-      const accessToken = await GetAccessToken(email, password, serviceLocator);
+      const { accessToken, userId } = await GetAccessToken(
+        email,
+        password,
+        serviceLocator
+      );
 
-      res.status(200).json({ token: accessToken });
+      await CreateTransaction(req.url, req.method, userId, serviceLocator);
+
+      res.status(200).json({ access_token: accessToken, id: userId });
     } catch (err) {
       console.error(err);
       res.sendStatus(401);

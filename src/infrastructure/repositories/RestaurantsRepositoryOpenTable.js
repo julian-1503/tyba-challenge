@@ -1,6 +1,7 @@
 "use strict";
 
 const RestaurantsRepository = require("../../domain/RestaurantsRepository");
+const Restaurant = require("../../domain/Restaurant");
 
 const fetch = require("node-fetch");
 
@@ -12,6 +13,20 @@ module.exports = class extends RestaurantsRepository {
 
     const results = await nearRestaurantsResponse.json();
 
-    return results;
+    const { restaurants = [] } = results;
+
+    return {
+      ...results,
+      restaurants: restaurants.map(
+        restaurant =>
+          new Restaurant(
+            restaurant.id,
+            restaurant.name,
+            restaurant.city,
+            restaurant.lat,
+            restaurant.lang
+          )
+      )
+    };
   }
 };

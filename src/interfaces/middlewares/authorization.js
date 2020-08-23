@@ -16,6 +16,7 @@ module.exports = (req, res, next) => {
     const { uid } = VerifyAccessToken(accessToken, serviceLocator);
 
     if (uid) {
+      req.authenticatedUser = uid;
       return next();
     }
 

@@ -4,6 +4,7 @@ const ListUsers = require("../../application/use_cases/ListUsers");
 const CreateUser = require("../../application/use_cases/CreateUser");
 const GetUser = require("../../application/use_cases/GetUser");
 const DeleteUser = require("../../application/use_cases/DeleteUser");
+const CreateTransaction = require("../../application/use_cases/CreateTransaction");
 
 module.exports = {
   async createUser(req, res) {
@@ -24,7 +25,16 @@ module.exports = {
         serviceLocator
       );
 
-      res.status(201).json(serviceLocator.userSerializer.serialize(user));
+      const serializedUser = serviceLocator.userSerializer.serialize(user);
+
+      await CreateTransaction(
+        req.url,
+        req.method,
+        serializedUser.id,
+        serviceLocator
+      );
+
+      res.status(201).json(serializedUser);
     } catch (err) {
       console.error(err);
       res.sendStatus(500);

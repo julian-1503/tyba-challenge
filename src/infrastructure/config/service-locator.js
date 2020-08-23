@@ -25,9 +25,11 @@ function buildBeans(req, _, next) {
     environment.database.dialect === constants.SUPPORTED_DATABASE.MONGO
   ) {
     const UserRepositoryMongo = require("../repositories/UserRepositoryMongo");
+    const TransactionRepositoryMongo = require("../repositories/TransactionRepositoryMongo");
     beans = {
       ...beans,
-      userRepository: new UserRepositoryMongo()
+      userRepository: new UserRepositoryMongo(),
+      transactionRepository: new TransactionRepositoryMongo()
     };
   } else {
     const UserRepositorySQLite = require("../repositories/UserRepositorySQLite");

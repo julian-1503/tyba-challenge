@@ -16,5 +16,8 @@ module.exports = async (
     throw new Error("Bad credentials");
   }
 
-  return accessTokenManager.generate({ uid: user.id });
+  return {
+    accessToken: accessTokenManager.generate({ uid: user.id }),
+    userId: user.id
+  };
 };

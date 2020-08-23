@@ -2,7 +2,7 @@
 
 const express = require("express");
 
-const RestaurantsController = require("../controllers/RestaurantsController");
+const TransactionController = require("../controllers/TransactionController");
 
 const authorization = require("../middlewares/authorization");
 const transaction = require("../middlewares/transaction");
@@ -10,10 +10,11 @@ const transaction = require("../middlewares/transaction");
 module.exports = () => {
   const Router = express.Router();
 
-  Router.route("/restaurants").get(
+  Router.get(
+    "/users/:id/transactions/",
     authorization,
     transaction,
-    RestaurantsController.findNear
+    TransactionController.findByUserId
   );
 
   return Router;
