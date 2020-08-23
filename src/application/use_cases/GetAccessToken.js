@@ -7,12 +7,16 @@ module.exports = async (
 ) => {
   const user = await userRepository.getByEmail(email);
 
+  if (!user) {
+    throw new Error("Not found");
+  }
+
   const isValidPassword = await passwordEncryptor.compare(
     password,
     user.password
   );
 
-  if (!user || !isValidPassword) {
+  if (!isValidPassword) {
     throw new Error("Bad credentials");
   }
 

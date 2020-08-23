@@ -1,6 +1,6 @@
-const UserRepository = require("../../../src/domain/UserRepository");
+const UserRepository = require("../../../../src/domain/UserRepository");
 const mockUserRepository = new UserRepository();
-const ListUsers = require("../../../src/application/use_cases/ListUsers");
+const ListUsers = require("../../../src/../application/use_cases/ListUsers");
 
 test("should resolve with all the users persisted in repository", async () => {
   // given

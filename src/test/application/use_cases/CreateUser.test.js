@@ -1,7 +1,7 @@
-const User = require("../../../src/domain/User");
-const UserRepository = require("../../../src/domain/UserRepository");
+const User = require("../../../../src/domain/User");
+const UserRepository = require("../../../../src/domain/UserRepository");
 const mockUserRepository = new UserRepository();
-const CreateUser = require("../../../src/application/use_cases/CreateUser");
+const CreateUser = require("../../../../src/application/use_cases/CreateUser");
 
 test("should resolve with the newly persisted user (augmented with an ID)", async () => {
   // given

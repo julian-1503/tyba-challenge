@@ -1,6 +1,6 @@
-const UserRepository = require("../../../src/domain/UserRepository");
+const UserRepository = require("../../../../src/domain/UserRepository");
 const mockUserRepository = new UserRepository();
-const DeleteUser = require("../../../src/application/use_cases/DeleteUser");
+const DeleteUser = require("../../../../src/application/use_cases/DeleteUser");
 
 test("should resolve (without result)", async () => {
   // given
